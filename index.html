@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="num1" />
+    <input type="text" id="op" />
+    <input type="text" id="num2" />
+    <button id="btn">Rēķināt</button>
+    <output id="output"></output>
+
+    <script>
+      const num1Input = document.getElementById("num1");
+      const opInput = document.getElementById("op");
+      const num2Input = document.getElementById("num2");
+      const btn = document.getElementById("btn");
+      const operator = document.getElementById("operator");
+
+      btn.addEventListener("click", handleClick);
+
+      function handleClick() {
+        let n1 = parseFloat(num1Input.value);
+        let op = opInput.value;
+        let n2 = parseFloat(num2Input.value);
+
+        let result = "";
+        let errors = validation(n1, n2);
+        if (errors == 0) {
+          result = calculate(n1, op, n2);
+        } else {
+          result = errors;
+        }
+        output.innerHTML = result;
+      }
+
+      function calculate() {
+        switch (op) {
+          case (op = "+"):
+            result = n1 + n2;
+            break;
+          case (op = "-"):
+            result = n1 - n2;
+            break;
+          case (op = "*"):
+            result = n1 * n2;
+            break;
+          case (op = "/"):
+            result = n1 / n2;
+            break;
+          case (op = "^"):
+            result = n1 ** n2;
+            break;
+          default:
+            result = "false";
+        }
+        console.log(result);
+      }
+      function validation(n1, n2) {
+        errors = [];
+        if (isNaN(n1)) {
+          errors = "pirmais skaitlis nepareizs";
+        }
+        if (isNaN(n2)) {
+          errors = "otrais skaitlis nepareizs";
+        }
+        return errors;
+      }
+    </script>
+  </body>
+</html>
